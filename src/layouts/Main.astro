@@ -1,0 +1,96 @@
+---
+import "../styles/global.css"; // Importing global CSS styles
+import HeadCard from "../components/CorpHeadCard.astro"; // Importing HeadCard component (not used in the HTML)
+import Footer from "../components/Footer.astro"; // Importing Footer component (commented out in HTML)
+import SearchBar from "../components/SearchBar.astro"; // Importing SearchBar component (not used in HTML)
+import { ViewTransitions } from "astro:transitions"; // Importing ViewTransitions for page transition effects
+
+type Props = {
+  title: string; // Prop for the page title
+};
+
+// Extracting the title from Astro's props
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" data-theme="business">
+  <head>
+    <!-- Links to stylesheets, fonts, and other head elements -->
+    <link rel="stylesheet" href="src/styles/global.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Poppins:wght@500&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA:Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content="McElroy Employee Directory" />
+    <link href="/pagefind/pagefind-ui.css" rel="stylesheet" />
+    <script src="/pagefind/pagefind-ui.js" is:inline></script>
+    <title>{title}</title>
+    <!-- Dynamic title -->
+    <ViewTransitions />
+    <!-- Page transition component -->
+  </head>
+  <body>
+    <div class="wrap">
+      <!-- Main content area -->
+      <main
+        class="artboard phone-6 artboard-demo box-content w-full h-full card card-compact box-decoration-clone bg-gradient-to-bl from-cyan-600 to-blue-600 text-primary-content rounded-lg"
+      >
+        <slot />
+        <!-- Slot for inserting child content -->
+        
+      </main>
+    </div>
+  </body><style>
+    .artboard.phone-6 {
+      width: 425px;
+      height: 900px;
+    }
+    .window {
+      /* width: auto; */
+      /* max-width: 500px;
+    height: 1080px;
+    max-height: 1080px; */
+      /* height: auto; */
+      position: relative;
+      top: auto;
+      left: auto;
+      margin: auto;
+      /* background: bg-base-200; */
+    }
+    .material-symbols-outlined {
+      font-variation-settings:
+        "FILL" 0,
+        "wght" 400,
+        "GRAD" 0,
+        "opsz" 24;
+    }
+
+    div.wrap {
+      box-sizing: border-box;
+      width: 50%;
+      /* max-width: 550px; */
+      width: 430px;
+      height: 910px;
+      margin: 0 auto;
+    }
+  </style>
+</html>
+
+<!-- <script>
+  window.addEventListener("DOMContentLoaded", (event) => {
+    //@ts-ignore
+    new PagefindUI({ element: "#search", showSubResults: true });
+  });
+</script> -->

@@ -1,0 +1,77 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+@layer utilities {
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    .no-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+   /* Hide scrollbar for IE, Edge and Firefox */
+    .no-scrollbar {
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;  /* Firefox */
+  }
+}
+
+@font-face {
+    font-family: AbrilFatface;
+    src: url(...public\fonts\AbrilFatface-Regular.ttf);
+    font-weight: normal;
+    font-style: serif;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: Oxygen;
+    src: url(/fonts/Oxygen-Regular.ttf);
+    font-weight: normal;
+    font-style: sans-serif;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: Oxygen;
+    src: url(/fonts/Oxygen-Bold.ttf);
+    font-weight: bold;
+    font-style: sans-serif;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: Oxygen;
+    src: url(/fonts/Oxygen-Light.ttf);
+    font-weight: light;
+    font-style: sans-serif;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: DMSerifDisplay;
+    src: url(/fonts/DMSerifDisplay-Regular.ttf);
+    font-weight: normal;
+    font-style: serif;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: DMSerifDisplay-Italic;
+    src: url(/fonts/DMSerifDisplay-Italic.ttf);
+    font-weight: italic;
+    font-style: serif;
+    font-display: swap;
+}
+
+body {
+    font-family: 'Oxygen', sans-serif;
+}
+
+h2 {
+    font-family: 'DMSerifDisplay', 'AbrilFatface', serif;
+}
+
+h1 {
+    font-family: 'DMSerifDisplay', 'AbrilFatface', serif;
+}
+
+

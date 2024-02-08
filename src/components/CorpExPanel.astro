@@ -1,0 +1,33 @@
+---
+import DeptExPanel from "./DeptExPanel.astro"; // Importing DeptExPanel component
+
+// Extracting DeptEmps data from Astro's props for use in the component
+const { DeptEmps } = Astro.props;
+---
+
+<!-- Rendering a list of departments -->
+<ul class="mt-4 ms-0.5">
+  <div
+    class="collapse-content hover:text-white hover:border-slate-300 transition ease-in duration-200 transform focus:scale-100 hover:-translate-y-1 hover:scale-105 active:translate-y-0"
+    >
+    <!-- DeptExPanel component used to display department-specific information, passing DeptEmps as prop -->
+    <DeptExPanel {DeptEmps} />
+  </div>
+</ul>
+
+<style>
+  /* No styles defined */
+</style>
+
+<script>
+  // JavaScript function to uncheck other radio buttons when one is selected
+  function uncheckOthers(index: number) {
+    const radios = document.querySelectorAll('input[type="radio"]');
+    radios.forEach((radio, i) => {
+      if (i !== index) {
+        const inputRadio = radio as HTMLInputElement;
+        inputRadio.checked = false;
+      }
+    });
+  }
+</script>

@@ -1,0 +1,261 @@
+{
+  "loctype": {
+    "corporate": {
+      "locations": [
+        {
+          "id": 1,
+          "locName": "Corporate",
+          "locNum": 900,
+          "address": "555 Generic Road",
+          "city": "Central City",
+          "state": "WS",
+          "zipcode": 77777,
+          "phoneNumber": "555-555-5555",
+          "faxNumber": null,
+          "email": "info@info.com",
+          "hours": "8-5 M-F",
+          "locType": 1,
+          "departments": [
+            {
+              "id": 1,
+              "deptName": "Admin",
+              "location": 1,
+              "employees": [
+                {
+                  "id": 2,
+                  "firstName": "Ted",
+                  "lastName": "Mosby",
+                  "jobTitle": "Receptionist",
+                  "isManager": 1,
+                  "phoneNumber": "555-555-5555",
+                  "cellNumber": "",
+                  "extension": "555",
+                  "email": "info@info.com",
+                  "location": 1,
+                  "department": 1
+                }
+              ]
+            },
+            {
+              "id": 2,
+              "deptName": "IT Dept",
+              "location": 1,
+              "employees": [
+                {
+                  "id": 1,
+                  "firstName": "Alfred",
+                  "lastName": "Pennyworth",
+                  "jobTitle": "IT Support Tech",
+                  "isManager": 1,
+                  "phoneNumber": "555-555-5555",
+                  "cellNumber": "",
+                  "extension": "5555",
+                  "email": "apennyworth@info.com",
+                  "location": 1,
+                  "department": 2
+                },
+                {
+                  "id": 5,
+                  "firstName": "Eric",
+                  "lastName": "Cartman",
+                  "jobTitle": "IT Services Manager",
+                  "isManager": 1,
+                  "phoneNumber": "555-555-5555",
+                  "cellNumber": "",
+                  "extension": "5555",
+                  "email": "info@info.com",
+                  "location": 1,
+                  "department": 2
+                }
+              ]
+            },
+            {
+              "id": 3,
+              "deptName": "Accounts Payable",
+              "location": 1,
+              "employees": []
+            },
+            {
+              "id": 5,
+              "deptName": "Accounts Receivable",
+              "location": 1,
+              "employees": []
+            },
+            {
+              "id": 6,
+              "deptName": "Retail Customer Service",
+              "location": 1,
+              "employees": []
+            },
+            {
+              "id": 7,
+              "deptName": "Purchasing",
+              "location": 1,
+              "employees": [
+                {
+                    "id": 6,
+                    "firstName": "Eric",
+                    "lastName": "Foreman",
+                    "jobTitle": "Purchasing Clerk",
+                    "isManager": 0,
+                    "phoneNumber": "555-555-5555",
+                    "cellNumber": "",
+                    "extension": "5555",
+                    "email": "info@info.com",
+                    "location": 1,
+                    "department": 2
+                  }
+              ]
+            },
+            { "id": 8, "deptName": "Credit", "location": 1, "employees": [] }
+          ]
+        }
+      ]
+    },
+    "mega mart": {
+      "locations": [
+        {
+          "id": 3,
+          "locName": "Mega Mart #01",
+          "locNum": 201,
+          "address": "sdgfshb",
+          "city": "sdfgrgs",
+          "state": "LA",
+          "zipcode": 77777,
+          "phoneNumber": "555-555-5555",
+          "faxNumber": "",
+          "email": "info@info.com",
+          "hours": "M-F 8-5",
+          "locType": 2,
+          "employees": []
+        },
+        {
+          "id": 4,
+          "locName": "Mega Mart #10",
+          "locNum": 210,
+          "address": "sdgsfgkj;",
+          "city": "jkl;jkl;j",
+          "state": "TX",
+          "zipcode": 77777,
+          "phoneNumber": "555-555-5555",
+          "faxNumber": "",
+          "email": "info@info.com",
+          "hours": "8-5 M-F",
+          "locType": 2,
+          "employees": []
+        }
+      ]
+    },
+    "service center": {
+      "locations": [
+        {
+          "id": 5,
+          "locName": "Service Center #02",
+          "locNum": 602,
+          "address": "djf;kljd",
+          "city": "Little Rock",
+          "state": "WS",
+          "zipcode": 77777,
+          "phoneNumber": "555-555-5555",
+          "faxNumber": "",
+          "email": "info@info.com",
+          "hours": "8-5 M-F",
+          "locType": 3,
+          "employees": []
+        },
+        {
+          "id": 6,
+          "locName": "Service Center #19",
+          "locNum": 619,
+          "address": "sjdfgk;",
+          "city": "Lewisport",
+          "state": "WS",
+          "zipcode": 77777,
+          "phoneNumber": "555-555-5555",
+          "faxNumber": "",
+          "email": "info@info.com",
+          "hours": "8-5 M-F",
+          "locType": 3,
+          "employees": []
+        }
+      ]
+    },
+    "plant": {
+      "locations": [
+        {
+          "id": 2,
+          "locName": "Mega Plant",
+          "locNum": 101,
+          "address": "555 Generic Rd",
+          "city": "Central City",
+          "state": "WS",
+          "zipcode": 77777,
+          "phoneNumber": "5555555555",
+          "faxNumber": "5555555555",
+          "email": "info@info.com",
+          "hours": "8-5 M-F",
+          "locType": 4,
+          "departments": [
+            {
+              "id": 4,
+              "deptName": "Accounts Payable",
+              "location": 2,
+              "employees": [
+                {
+                  "id": 3,
+                  "firstName": "Marshall",
+                  "lastName": "Ericson",
+                  "jobTitle": "Operations",
+                  "isManager": 1,
+                  "phoneNumber": "555-555-5555",
+                  "cellNumber": "",
+                  "extension": "555",
+                  "email": "info@info.com",
+                  "location": 2,
+                  "department": 4
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": 7,
+          "locName": "Sunnydale Division",
+          "locNum": 111,
+          "address": "l;jjdl;kjf",
+          "city": "Sunnyvale",
+          "state": "CA",
+          "zipcode": 777777,
+          "phoneNumber": "555-555-5555",
+          "faxNumber": "",
+          "email": "info@info.com",
+          "hours": "8-5 M-F",
+          "locType": 4,
+          "departments": [
+            { "id": 9, "deptName": "Admin", "location": 7, "employees": [] },
+            {
+              "id": 10,
+              "deptName": "Retail Customer Service",
+              "location": 7,
+              "employees": [
+                {
+                  "id": 4,
+                  "firstName": "Lily",
+                  "lastName": "Ericson",
+                  "jobTitle": "CS Rep I",
+                  "isManager": 0,
+                  "phoneNumber": "555-555-8555",
+                  "cellNumber": "555-555-5555",
+                  "extension": "8555",
+                  "email": "info@info.com",
+                  "location": 7,
+                  "department": 10
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

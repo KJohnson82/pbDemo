@@ -1,0 +1,80 @@
+---
+import Icon from "astro-icon";
+import UserCard from "./UserCard.astro"; // Importing UserCard component for displaying employee details
+import Index from "../pages/index.astro";
+
+
+// Properties of each employee
+type Props = {
+  employees: {
+    id: number;
+    firstName: string;
+    lastName: string;
+    jobTitle: string;
+    isManager: number;
+    phoneNumber: string;
+    cellNumber?: string;
+    extension?: string;
+    email: string;
+    location: number;
+    department: number;
+  }[];
+  
+};
+
+// Extract the employees data from props
+const { employees } = Astro.props;
+
+
+---
+
+<!-- // Render the list of employees -->
+<ul class="rounded-sm ms-1">
+  {employees.map((employee) => (
+    <!-- List item for each employee -->
+    <li class="rounded-lg hover:bg-primary hover:bg-opacity-5 hover:rounded-md hover:border-transparent hover:text-white transition ease-in duration-200 transform focus:scale-110 hover:-translate-y-0.5 hover:scale-105 active:translate-y-0 first:border-t-0 last:border-b-0">
+      <div class="collapse mb-0.5 -px-4 p-0 focus-within:bg-primary focus-within:border-e-8 focus-within:rounded-md focus-within:text-white focus-within:-translate-y-0.5 focus-within:scale-105 focus-within:m-0.5 focus-within:me-1 ">
+        <!-- Collapsible input for each employee -->
+        <input
+          type="radio"
+          class="collapse"
+          name="corp-employee-list"
+        />
+        <!-- Employee name and job title as collapsible title -->
+        <div class="collapse-title text-lg "   >
+          <span class="employee items-center place-items-center " data-page={`${employee.location === 1 ? "corporate" : "plant"}`} data-name={`${employee.firstName + " " + employee.lastName}`}  id={(`emp-${employee.id + "-" + employee.firstName + "-" + employee.lastName}`).replaceAll(" ", "-")}  >
+          <h4>
+            <!-- Places a star beside employees who are managers -->
+            {employee.isManager === 1 ? <Icon name="star" class="fill-white h-6 w-6 inline"/> : ""}
+            {employee.firstName + " " + employee.lastName + " - " + employee.jobTitle + " "} 
+           </h4>
+            </span> 
+        </div>
+        
+        <!-- UserCard component displaying employee details -->
+        <div class="collapse-content bg-accent rounded-e-none rounded-b-md shadow-md focus-within:border-2" >
+          <UserCard
+            userName={employee.firstName + " " + employee.lastName}
+            jobTitle={employee.jobTitle}
+            phoneNumber={employee.phoneNumber}
+            cellNumber={employee.cellNumber}
+            extension={employee.extension}
+            email={employee.email}
+            isManager={employee.isManager}
+          />
+        </div>
+      </div>
+    </li>
+  ))}
+</ul>
+
+<style>
+  input[type="radio"]:checked + .collapse-title {
+    background-color: #1c4e80;
+    border-bottom: 2px solid white;
+    font-weight: bold;
+  }
+</style>
+<script>
+  
+</script>

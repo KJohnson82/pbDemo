@@ -1,0 +1,74 @@
+---
+// Import data and components
+import StoreCard from "./StoreCard.astro"; // Importing StoreCard component
+
+
+// Properties of each mega mart store
+type Props = {
+  megamarts: {
+    id: number;
+    locName: string;
+    locNum: number;
+    address: string;
+    city: string;
+    state: string;
+    zipcode?: number;
+    phoneNumber: string;
+    faxNumber: string;
+    email: string;
+    hours: string;
+  }[];
+};
+
+// Extract the megamarts data from props
+const { megamarts } = Astro.props;
+---
+
+<!-- Render a list of mega Mart stores -->
+<ul class="mt-4 ms-1">
+  {megamarts.map((megamart) => (
+     <!-- List item for each mega Mart store -->
+    <li class="rounded-lg shadow-md">
+      <div
+        class="collapse rounded-lg relative shadow-sm py-0.5 border-2 mx-0 my-2 hover:text-white hover:border-slate-300 transition ease-in duration-200 transform focus:scale-105 hover:-translate-y-1 hover:scale-100 active:translate-y-0 focus-within:bg-primary focus-within:font-white focus-within:border-1 focus-within:border-s-8 focus-within:p-0 focus-within:m-2 focus-within:shadow-xl"
+      >
+      <!-- Collapsible input for each store -->
+        <input
+          type="radio"
+          class="collapse"
+          aria-checked="true"
+          name="mm-list"
+        />
+        <!-- Store name as collapsible title -->
+        <div class="collapse-title store text-lg uppercase font-semibold tracking-wide text-white" data-page="megamart" data-megamart={`${megamart.locName}`} id={(`mm-${megamart.id + "-" + megamart.locName}`).replaceAll(" ", "-")} >
+          <h3>{megamart.locName}</h3>
+        </div>
+        <!-- StoreCard component displaying store details -->
+        <div class="collapse-content bg-accent shadow-md">
+          <StoreCard
+            address={megamart.address}
+            phoneNumber={megamart.phoneNumber}
+            faxNumber={megamart.faxNumber}
+            email={megamart.email}
+            hours={megamart.hours}
+          />
+        </div>
+      </div>
+    </li>
+  ))}
+</ul>
+
+<style></style>
+
+<script>
+  // JavaScript function to uncheck other radio buttons when one is selected
+  function uncheckOthers(index: number) {
+    const radios = document.querySelectorAll('input[type="radio"]');
+    radios.forEach((radio, i) => {
+      if (i !== index) {
+        const inputRadio = radio as HTMLInputElement;
+        inputRadio.checked = false;
+      }
+    });
+  }
+</script>

@@ -1,0 +1,64 @@
+---
+import UserExPanel from './UserExPanel.astro'; // Importing UserExPanel component
+
+// Define the type for the component's props
+export type Props = {
+  DeptEmps: {
+    // Define properties for each department and its employees
+    id: number;
+    deptName: string;
+    location: number;
+    employees: {
+      // Fields for each employee
+      id: number;
+      firstName: string;
+      lastName: string;
+      jobTitle: string;
+      isManager: number;
+      phoneNumber: string;
+      cellNumber?: string;
+      extension?: string;
+      email: string;
+      location: number;
+      department: number;
+    }[];
+  }[];
+};
+
+// Extract the DeptEmps data from props
+const { DeptEmps } = Astro.props;
+---
+
+<!-- Render a list of departments -->
+<ul class="rounded-sm">
+  {DeptEmps.map((department) => (
+    <!-- Iterate over each department in DeptEmps array -->
+    <li class="relative rounded-md shadow-md border-2 my-2 py-0 mx-0 focus-within:border-0 focus-within:ms-2 focus-within:border-s-8 transition ease-in duration-200 transform hover:-translate-y-1 hover:scale-100 active:translate-y-0 active:scale-95">
+      <div class="collapse text-white focus-within:shadow-md focus-within:bg-info focus-within:rounded-s-none">
+        <!-- Radio button for each department -->
+        <input type="radio" class="collapse" aria-checked="mixed" name="dept-list" />
+        <!-- Department name as collapse title -->
+        <div class="collapse-title department text-lg uppercase font-semibold tracking-wide text-white" data-department={`${department.deptName}`} id={(`dept-${department.id + "-" + department.deptName}`).replaceAll(" ", "-")}  >
+          <h3>{department.deptName}</h3>
+        </div>
+        <!-- UserExPanel component to display department employees -->
+        <div class="collapse-content focus-within:p-1.5 focus-within:pe-2.5 focus-within:me-0.5"  >
+          <h3><UserExPanel employees={department.employees}  /></h3>
+        </div>
+      </div>
+    </li>
+  ))}
+</ul>
+
+
+<style>
+ 
+  input[type="radio"]:checked + .collapse-title {
+    background-color: #1c4e80;
+    border-bottom: 2px solid white;
+    font-weight: bold;
+  }
+</style>
+
+<script>
+</script>

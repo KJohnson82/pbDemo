@@ -1,0 +1,111 @@
+---
+// Define properties for each head card
+type Props = {
+  headCard: {
+    title: string;
+    subtitle1: string;
+    address: string;
+    city: string;
+    state: string;
+    zip: string;
+    subtitle2: string;
+    phone: string;
+    email: string;
+    subtitle3: string;
+    phone2: string;
+    // phone3: string;
+  }[];
+};
+
+// Extract the headCard data from props
+const { headCard } = Astro.props;
+---
+
+<!-- // Render the head cards -->
+<!-- Render head cards based on provided data -->
+<div class=" rounded-md  ">
+  {headCard.map((card) => (
+    <!-- Iterate over each card in headCard array and create a div for each card -->
+    <div class="card-body grid grid-cols-1 border-x-[3px] border-y-[3px] border-transparent rounded-md pt-0 pb-1 mb-2 ">
+      <h2 class="card-title place-content-center divide-y-[1px] pt-2 tracking-wide">
+        {card.title} <!-- Display the card title -->
+      </h2>
+      <!-- Divider line -->
+      <div class="w-full p-0 m-0 border-b-2 border-slate-100 border-opacity-20 "></div>
+      <!-- Sections for address, contact, and help desk information -->
+      <!-- Address section -->
+          <section class="address-section pb-1">
+          <!--<p>{card.subtitle1}</p> -->
+          <div class="w-full text-center align-middle">
+            <p class="text-base/7">{card.address} {card.city}, {card.state} {card.zip}</p>
+          </div>
+        </section>
+        <!-- Contact section -->
+        <section class="contact-section ">
+          <div class="grid grid-cols-2 gap-1 divide-x-2 divide-slate-100 divide-opacity-20 pb-2 ">
+        <!-- Column 1 -->
+        <div class=" text-center align-middle pe-6 ">
+          <p class="font-semibold border-b-2 border-slate-100 border-opacity-20 pb-0.5">{card.subtitle1}</p>
+          <p class="pt-1">{card.phone}</p>
+        </div>
+        
+        <!-- Column 2 -->
+        <div class=" text-center align-middle ps-6 ">
+          <p class="font-semibold border-b-2 border-slate-100 border-opacity-20 pb-0.5 ">{card.subtitle2}</p>
+          <p class="pt-1" >{card.email}</p>
+        </div>
+      </div>
+        </section>
+        <!-- Help desk section -->
+        <section class="help-desk-section border-t-2 border-slate-100 border-opacity-20 ">
+          <div class="grid grid-cols-1 gap-1 divide-x-2 border-slate-100 border-opacity-20 ">
+            <div class=" text-base/3 text-center align-middle pt-6 pb-0 pe-2 mb-0"><p class="font-semibold ">{card.subtitle3} | {card.phone2}</p></div>
+            
+        
+        
+      </div>
+        </section>
+    </div>
+  ))}
+</div>
+
+
+<style>
+  /* Styles for cards */
+  .card {
+    margin: 0 auto;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 1%;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+  }
+
+  /* Styles for card title */
+  .card-title {
+    font-weight: bold;
+    font-size: 30px;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: Oxygen;
+    margin-bottom: 0%;
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+
+  /* Styles for dividers */
+  .divider {
+    margin-top: 0;
+    margin-bottom: 3%;
+  }
+
+  /* Styles for headings and paragraphs */
+  /* h3 {
+    font-weight: bold;
+    font-size: large;
+  } */
+
+  p {
+    font-weight: 600;
+  }
+</style>

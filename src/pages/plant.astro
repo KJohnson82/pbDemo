@@ -1,0 +1,129 @@
+---
+// Import necessary components and data
+import CorpHeadCard from "../components/CorpHeadCard.astro"; // Importing CorpHeadCard component
+import Footer from "../components/Footer.astro"; // Importing Footer component
+import Main from "../layouts/Main.astro"; // Importing Main layout
+import PlantData from "../data/JSON/MPD_Data_2425011648.json"; // Importing plant data from a JSON file
+import PlantExPanel from "../components/PlantExPanel.astro"; // Importing PlantExPanel component
+import SearchBar from "../components/SearchBar.astro";
+
+// Define types for plant data
+type Locations = {
+  PlantLocations: {
+    id: number;
+    locName: string;
+    locNumber: number;
+    address: string;
+    city: string;
+    state: string;
+    zipcode: number;
+    phoneNumber: string;
+    faxNumber?: string;
+    email: string;
+    hours: string;
+    departments: Depts["PlantDepts"];
+  }[];
+};
+
+type Depts = {
+  PlantDepts: {
+    id: number;
+    deptName: string;
+    location: number;
+    employees: Users["PlantUsers"];
+  }[];
+};
+
+type Users = {
+  PlantUsers: {
+    id: number;
+    firstName: string;
+    lastName: string;
+    jobTitle: string;
+    phoneNumber: string;
+    cellNumber?: string;
+    extension?: string;
+    email: string;
+    location: number;
+    department: number;
+    isManger: number;
+  }[];
+};
+
+// Extract plant-related data from props
+const { PlantLocations, PlantDepts, PlantUsers } = Astro.props;
+---
+
+<!-- // Render the main layout, setting the title for the page -->
+<Main title="Plant">
+  <!-- // Outermost container for the content -->
+  <div class="w-full h-full card card-compact">
+    <!-- Section for the plant-specific header card -->
+    <section class="h-2/6">
+      <!-- Render the CorpHeadCard component with plant-specific information -->
+      <CorpHeadCard
+        headCard={[
+          {
+            title: "Plants",
+            subtitle1: "",
+            address: "555 Generic Road,",
+            city: "Central City",
+            state: "WS",
+            zip: "77777",
+            subtitle2: "",
+            phone: "(888) 555-5555",
+            email: "info@info.com",
+            subtitle3: "IT Help Desk",
+            phone2: "(866) 555-5555",
+          },
+        ]}
+      />
+    </section>
+
+    <!-- Visual divider between sections -->
+    <div class="divider -mt-2 -mb-2"></div>
+
+    <!-- Section for displaying plant data -->
+    <section
+      class="h-5/6 flex-auto no-scrollbar resize-none overflow-y-scroll overscroll-contain scroll-auto scroll-mx-px bg-inherit"
+    >
+    <div class="ps-1 py-1 pe-2">
+      <SearchBar />
+    </div>
+      <!-- Render the PlantExPanel component with plant location data -->
+      <div
+        class="h-full ps-2 pe-2 py-1 border-4 border-transparent overflow-y-auto no-scrollbar"
+      >
+        <PlantExPanel  PlantLocs={PlantData.loctype["plant"].locations} />
+      </div>
+    </section>
+
+    <div class="divider -mt-2 -mb-2"></div>
+
+    <!-- Section for the page footer -->
+    <section class="box-border h-1/5 mt-2">
+      <!-- Render the Footer component with navigation links -->
+      <!-- <SearchBar /> -->
+      <Footer
+        bottomNav={[
+          { icon: "home", label: "Home", to: "/" },
+          { icon: "corporate", label: "Corporate", to: "/corporate" },
+          { icon: "store_1", label: "Mega Mart", to: "/megamart" },
+          {
+            icon: "service_center_1",
+            label: "Service Center",
+            to: "/servicecenter",
+          },
+          // { icon: "plant", label: "Plant", to: "/plant" },
+        ]}
+      />
+    </section>
+  </div>
+</Main>
+
+<style>
+  .card {
+    margin: 0 auto;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+  }
+</style>

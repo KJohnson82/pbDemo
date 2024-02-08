@@ -1,0 +1,72 @@
+---
+import StoreCard from "./StoreCard.astro"; // Importing StoreCard component for displaying service center details
+
+// Properties of each service center
+type Props = {
+  servicecenters: {
+    id: number;
+    locName: string;
+    locNum: number;
+    address: string;
+    city: string;
+    state: string;
+    zipcode?: number;
+    phoneNumber: string;
+    faxNumber: string;
+    email: string;
+    hours: string;
+  }[];
+};
+
+// Extract servicecenters data from Astro's props
+const { servicecenters } = Astro.props;
+---
+
+<!-- Render a list of service centers -->
+<ul class="mt-4 ms-1  ">
+  {
+    servicecenters.map((serviceCenter) => (
+    <!-- List item for each service center -->
+      <li class="rounded-lg  shadow-md  ">
+        <div class="collapse rounded-lg relative shadow-sm py-0.5 border-2 mx-0 my-2 hover:text-white hover:border-slate-300  transition ease-in duration-200 transform focus:scale-105 hover:-translate-y-1 hover:scale-100 active:translate-y-0 focus-within:bg-primary focus-within:font-white focus-within:border-1 focus-within:border-s-8 focus-within:p-0 focus-within:m-2 focus-within:shadow-xl ">
+          <!-- Collapsible input for each service center -->
+          <input
+            type="radio"
+            class="collapse"
+            aria-checked="true"
+            name="sc-list"
+          />
+          <!-- Service center name as collapsible title -->
+          <div class="collapse-title store text-lg uppercase font-semibold tracking-wide text-white  " data-page="servicecenter" data-servicecenter={`${serviceCenter.locName}`} id={(`sc-${serviceCenter.id + "-" + serviceCenter.locName}`).replaceAll(" ", "-")}  >
+            <h3>{serviceCenter.locName}</h3>
+          </div>
+          <!-- StoreCard component displaying service center details -->
+          <div class="collapse-content bg-accent shadow-md   ">
+            <StoreCard 
+            address={serviceCenter.address}
+            phoneNumber={serviceCenter.phoneNumber}
+            faxNumber={serviceCenter.faxNumber}
+            email={serviceCenter.email}
+            hours={serviceCenter.hours}
+            
+            />
+          </div>
+        </div>
+      </li>
+    ))
+  }
+</ul>
+
+<style></style>
+
+<script>
+  function uncheckOthers(index: number) {
+    const radios = document.querySelectorAll('input[type="radio"]');
+    radios.forEach((radio, i) => {
+      if (i !== index) {
+        const inputRadio = radio as HTMLInputElement;
+        inputRadio.checked = false;
+      }
+    });
+  }
+</script>

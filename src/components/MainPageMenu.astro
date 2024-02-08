@@ -1,0 +1,55 @@
+---
+import Icon from "astro-icon"; // Importing Icon component from astro-icon
+
+// Define the type for individual location items
+type LocType = {
+  to: string; // URL or path the item will link to
+  location: string; // Text to display for the location
+  desc: string; // Additional description or class names for styling
+  icon: string; // Icon name for the item
+};
+
+// Define the type for the component's props
+export type Props = {
+  loctypes: LocType[]; // Array of location types
+};
+
+let { loctypes } = Astro.props as Props;
+---
+
+<!-- Grid container for location types -->
+<div class="grid gap-4 grid-cols-1 grid-rows-4 h-96 w-full my-2 mx-1">
+  <!-- Map over each location type to create a link and button -->
+  {
+    loctypes.map(({ to, location, desc, icon }) => (
+      <a
+        href={to}
+        class="rounded-xl flex my-1 border-4 relative shadow-md bg-transparent hover:text-white hover:border-slate-300 transition ease-in duration-200 transform hover:-translate-y-1 hover:scale-105 active:translate-y-0 active:scale-95"
+      >
+        <button class={desc} type="button">
+          <span class="grid grid-cols-2 items-center border-transparent hover:border-hidden ">
+            <h2 class="text-white text-left text-lg font-semibold tracking-wider">
+              {location}
+            </h2>
+            <Icon name={icon} class="fill-white h-10 w-10 place-self-end" />
+          </span>
+        </button>
+      </a>
+    ))
+  }
+</div>
+
+<style>
+  a button {
+    position: relative;
+    display: inline-table;
+    margin-top: auto;
+    margin-bottom: auto;
+    padding-top: auto;
+    padding-bottom: auto;
+    background-color: transparent;
+  }
+  h2 {
+    font-family: Oxygen;
+  }
+</style>

@@ -1,0 +1,101 @@
+---
+// Import necessary components and data
+import Footer from "../components/Footer.astro"; // Importing Footer component
+import Main from "../layouts/Main.astro"; // Importing Main layout
+import StoreHeadCard from "../components/StoreHeadCard.astro"; // Importing StoreHeadCard component
+import MMExPanel from "../components/MMExPanel.astro"; // Importing MMExPanel component
+import MMData from "../data/JSON/MPD_Data_2425011648.json"; // Importing data from a JSON file
+import SearchBar from "../components/SearchBar.astro";
+
+// Define type for Mega Mart data
+// type Retail = {
+//   MegaMart: {
+//     id: number;
+//     locName: string;
+//     locNum: number;
+//     address: string;
+//     city: string;
+//     state: string;
+//     zipcode?: number;
+//     phoneNumber: string;
+//     faxNumber: string;
+//     email: string;
+//     hours: string;
+//   };
+// };
+
+// No props are being used in this component
+const {} = Astro.props;
+---
+
+<!-- // Render the main layout, setting the title for the page -->
+<Main title="Mega Mart">
+  <!-- // Outermost container for the content -->
+  <div class="w-full h-full card card-compact">
+    <!-- Section for the Mega Mart header card -->
+    <section class="h-2/6 shadow-sm">
+      <!-- Render the StoreHeadCard component with provided properties -->
+      <StoreHeadCard
+        storeHeadCard={[
+          {
+            title: "Mega Marts",
+            subtitle1: "Maybe some info on area managers?",
+            subtitle2: "Maybe other needed contact info?",
+            phone: "(555) 555-5555",
+            subtitle3: "IT Help Desk",
+            phone2: "(555) 555-5555",
+            phone3: "(866) 555-5555",
+          },
+        ]}
+      />
+    </section>
+
+    <!-- Visual divider between sections -->
+    <div class="divider shadow-sm -mt-2 -mb-2"></div>
+
+    <!-- Section for displaying Mega Mart data -->
+    <section
+      class="h-5/6 flex-auto no-scrollbar resize-none overflow-y-scroll overscroll-contain scroll-auto scroll-mx-px"
+    >
+    <div class="ps-1 py-1 pe-2">
+      <SearchBar />
+    </div>
+      <!-- Render the MMExPanel component with Mega Mart data -->
+      <div
+        class="h-full ps-2 py-1 pe-4 border-4 border-transparent focus-within:text-white no-scrollbar flex-auto scroll-auto overscroll-contain overflow-y-auto"
+      >
+        <MMExPanel  megamarts={MMData.loctype["mega mart"].locations} />
+      </div>
+    </section>
+
+    <div class="divider shadow-sm -mt-1 -mb-1"></div>
+
+    <!-- Section for the page footer -->
+    <section class="box-border h-1/5 mt-2">
+      <!-- {/* Render the footer with navigation links */} -->
+      <!-- <SearchBar /> -->
+      <Footer
+        bottomNav={[
+          { icon: "home", label: "Home", to: "/" },
+          { icon: "corporate", label: "Corporate", to: "/corporate" },
+          // { icon: "store_1", label: "Mega Mart", to: "/megamart" },
+          {
+            icon: "service_center_1",
+            label: "Service Center",
+            to: "/servicecenter",
+          },
+          { icon: "plant", label: "Plant", to: "/plant" },
+        ]}
+      />
+    </section>
+  </div>
+</Main>
+
+<style>
+  .card {
+    margin: 0 auto;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+  }
+</style>
+
+

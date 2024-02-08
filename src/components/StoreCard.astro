@@ -1,0 +1,118 @@
+---
+// Properties for each store
+type StoreProps = {
+  locName: string;
+  locNum: number;
+  address: string;
+  city: string;
+  state: string;
+  zipcode: string;
+  phoneNumber: string;
+  faxNumber: string;
+  email: string;
+  hours: string;
+};
+
+// Extract the store props from Astro.props and cast them to the StoreProps type
+const {
+  locName,
+  locNum,
+  address,
+  city,
+  state,
+  zipcode,
+  phoneNumber,
+  faxNumber,
+  email,
+  hours,
+} = Astro.props as StoreProps;
+---
+
+<!-- // Render the store card -->
+<div class="user-card card card-compact bg-accent p-2 rounded-md">
+  <!-- {/* Conditionally render store information only if the corresponding values are not empty */} -->
+  {
+    locName !== "" ? (
+      <p class="text-md text-inherit font-semibold ps-1">
+        <strong>{locName}</strong>
+      </p>
+    ) : null
+  }
+  {
+    locNum !== null ? (
+      <p class="text-md text-inherit font-semibold ps-1">
+        <strong>{locNum}</strong>
+      </p>
+    ) : null
+  }
+  {
+    address !== "" ? (
+      <p class="text-md text-inherit font-semibold ps-1">
+        <strong>Address:</strong> {address}
+      </p>
+    ) : null
+  }
+  {
+    city !== "" ? (
+      <p class="text-md text-inherit font-semibold ps-1">{city}</p>
+    ) : null
+  }
+  {
+    state !== "" ? (
+      <p class="text-md text-inherit font-semibold ps-1">{state}</p>
+    ) : null
+  }
+  {
+    zipcode !== "" ? (
+      <p class="text-md text-inherit font-semibold ps-1">{zipcode}</p>
+    ) : null
+  }
+  {
+    phoneNumber !== "" ? (
+      <p class="text-md text-inherit font-semibold ps-1">
+        <strong>Phone:</strong> {phoneNumber}
+      </p>
+    ) : null
+  }
+  {
+    faxNumber !== "" ? (
+      <p class="text-md text-inherit font-semibold ps-1">
+        <strong>Fax:</strong> {faxNumber}
+      </p>
+    ) : null
+  }
+  {
+    email !== "" ? (
+      <p class="text-md text-inherit font-semibold ps-1">
+        <strong>Email:</strong> {email}
+      </p>
+    ) : null
+  }
+  {
+    hours !== "" ? (
+      <p class="text-md text-inherit font-semibold ps-1">
+        <strong>Hours:</strong> {hours}
+      </p>
+    ) : null
+  }
+</div>
+
+<style>
+  /* No styles defined */
+</style>
+
+<script>
+  // JavaScript function to bold the "Ext:" text in phone numbers
+  window.onload = function () {
+    const elements = document.querySelectorAll("p");
+
+    elements.forEach((element) => {
+      if (element.textContent && element.textContent.includes("Ext:")) {
+        element.innerHTML = element.innerHTML.replace(
+          "Ext:",
+          "<strong>Ext:</strong>"
+        );
+      }
+    });
+  };
+</script>

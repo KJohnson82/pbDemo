@@ -1,0 +1,71 @@
+---
+// Define the type for the component's props
+type UserProps = {
+  userName: string;
+  phoneNumber: string;
+  email: string;
+  jobTitle: string;
+  extension: string;
+  cellNumber: string;
+};
+
+// Extract the props and cast them to the UserProps type
+const { userName, phoneNumber, email, jobTitle, extension, cellNumber } =
+  Astro.props as UserProps;
+---
+
+<!-- // Render the user card -->
+<div class="user-card card card-compact bg-inherit p-2">
+  <!-- {/* Conditionally render user name and job title */} -->
+  <!-- {userName !== "" ? (
+    <p class="text-md text-gray-600 ps-1">
+      {userName} {jobTitle !== "" ? `- ${jobTitle}` : null}
+    </p>
+  ) : null} -->
+
+  <!-- {/* Conditionally render phone number and extension */} -->
+  {
+    phoneNumber !== "" ? (
+      <p class="text-md text-base-content font-semibold ps-1">
+        <strong>Phone:</strong> {phoneNumber}{" "}
+        {extension !== "" ? `| Ext: ${extension}` : null}
+      </p>
+    ) : null
+  }
+
+  <!-- {/* Conditionally render cell number */} -->
+  {
+    cellNumber !== "" ? (
+      <p class="text-md text-base-content font-semibold ps-1">
+        <strong>Cell Number:</strong> {cellNumber}
+      </p>
+    ) : null
+  }
+
+  <!-- {/* Conditionally render email */} -->
+  {
+    email !== "" ? (
+      <p class="text-md text-base-content font-semibold ps-1">
+        <strong>Email:</strong> {email}
+      </p>
+    ) : null
+  }
+</div>
+
+<style></style>
+
+<script>
+  // JavaScript function to bold the "Ext:" text in phone numbers
+  window.onload = function () {
+    const elements = document.querySelectorAll("p");
+
+    elements.forEach((element) => {
+      if (element.textContent && element.textContent.includes("Ext:")) {
+        element.innerHTML = element.innerHTML.replace(
+          "Ext:",
+          "<strong>Ext:</strong>"
+        );
+      }
+    });
+  };
+</script>

@@ -1,0 +1,37 @@
+<!-- ---
+
+---
+
+<aside>
+    <form class="form">
+        <div>
+            <label for="search">Search for name</label>
+            <span></span>
+        </div>
+        <input type="search" required min="2" max="24" name="search" id="search" placeholder="Search by name..." class="" />
+    </form>
+</aside>
+
+<script>
+    
+import DOMPurify from "dompurify";
+    const form = document.querySelector('form');
+    form?.addEventListener('submit', (e) => {
+        e.preventDefault();
+        console.log(e.target);
+        const formData = new FormData(form);
+        
+
+        const search = DOMPurify.sanitize(formData.get('search')?.toString() ?? '');
+        if (!search || search.length === 0) return;
+        const url = new URL("/search", window.location.origin);
+        url.searchParams.set('search', search);
+        window.location.assign(url.toString());
+        // const search = document.querySelector('#search').value;
+        // window.location.href = `/search/${search}`;
+    });
+</script>
+
+<style>
+
+</style> -->

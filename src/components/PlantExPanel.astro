@@ -1,0 +1,109 @@
+---
+import UserExPanel from "./UserExPanel.astro"; // Importing UserExPanel component for displaying employee details
+
+// Properties of each plant location and its departments
+export type Props = {
+  PlantLocs: {
+    id: number;
+    locName: string;
+    locNum: number;
+    address: string;
+    city: string;
+    state: string;
+    zipcode: number;
+    phoneNumber: string;
+    faxNumber: string;
+    email: string;
+    hours: string;
+    departments: {
+      id: number;
+      deptName: string;
+      location: number;
+      employees: {
+        id: number;
+        firstName: string;
+        lastName: string;
+        jobTitle: string;
+        phoneNumber: string;
+        cellNumber: string;
+        extension: string;
+        email: string;
+        location: number;
+        department: number;
+        isManager: number;
+      }[];
+    }[];
+  }[];
+};
+
+// Extract PlantLocs data from Astro's props
+const { PlantLocs } = Astro.props;
+---
+
+<!-- Render a list of plant locations -->
+<ul>
+  {PlantLocs.map((location) => (
+    <!-- List item for each plant location -->
+    <li class="rounded-lg shadow-md">
+      <div
+        class="collapse rounded-lg relative shadow-sm py-0.5 border-2 mx-0 my-2 focus-within:shadow-xl  hover:text-white hover:border-slate-300 transition ease-in duration-200 transform focus:scale-105 hover:-translate-y-1 hover:scale-100 active:translate-y-0"
+      >
+      <!-- Collapsible input for each location -->
+        <input type="radio" class="collapse" aria-checked="mixed" name="location-list" />
+        <!-- Location name as collapsible title -->
+        <div class="collapse-title location text-lg uppercase font-semibold tracking-wide text-white " data-location={`${location.locName}`} id={(`loc-${location.id + "-" + location.locName}`).replaceAll(" ", "-")} >
+          <h3>{location.locName}</h3>
+        </div>
+        <!-- Nested list for departments within each location -->
+        <div class="collapse-content">
+          <ul class="py-0 ">
+            {location.departments.map((department) => (
+              <!-- List item for each department -->
+              <li
+                class="relative rounded-md shadow-md border-2 my-2 py-0 mx-0 focus-within:border-0 focus-within:ms-2 focus-within:border-s-8 "
+              >
+                <div
+                  class="collapse  text-white focus-within:shadow-md  focus-within:bg-info  focus-within:rounded-s-none"
+                >
+                  <input type="radio" class="collapse" aria-checked="true" name="dept-list" />
+                  <!-- Department name as collapsible title -->
+                  <div class="collapse-title department text-lg uppercase font-semibold tracking-wide text-white " data-department={`${department.deptName}`} id={(`dept-${department.id + "-" + department.deptName}`).replaceAll(" ", "-")} >
+                    <h3>{department.deptName}</h3>
+                  </div>
+                  <!-- UserExPanel component displaying employee details for the department -->
+                  <div class="collapse-content focus-within:p-1.5 focus-within:pe-2.5 focus-within:me-0.5 " >
+                    <UserExPanel
+                      employees={department.employees.map((employee) => ({ ...employee, isManager: employee.isManager }))} 
+                    />
+                  </div>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </li>
+  ))}
+</ul>
+
+<style>
+  input[type="radio"]:checked + .collapse-title {
+    background-color: #1c4e80;
+    border-bottom: 2px solid white;
+    font-weight: bold;
+  }
+
+</style>
+
+<script>
+  // JavaScript function to uncheck other radio buttons when one is selected
+  function uncheckOthers(index: number) {
+    const radios = document.querySelectorAll('input[type="radio"]');
+    radios.forEach((radio, i) => {
+      if (i !== index) {
+        const inputRadio = radio as HTMLInputElement;
+        inputRadio.checked = false;
+      }
+    });
+  }
+</script>

@@ -1,0 +1,92 @@
+---
+type Props = {
+  storeHeadCard: {
+    title: string;
+    subtitle1: string;
+    // address: string;
+    // city: string;
+    // state: string;
+    // zip: string;
+    subtitle2: string;
+    phone: string;
+    // email: string;
+    subtitle3: string;
+    phone2: string;
+    phone3: string;
+  }[];
+};
+
+// Extract storeHeadCard data from Astro's props
+const { storeHeadCard } = Astro.props;
+---
+
+<!-- Container for store head cards -->
+<div class=" rounded-md ">
+   <!-- Mapping through each card in storeHeadCard array -->
+  {
+    storeHeadCard.map((card) => (
+      // <div class="card w-96 card-normal bg-primary text-primary-content">
+        // <div class="card card-normal bg-primary text-primary-content">
+        <div class="card-body grid grid-cols-1 border-x-[3px] border-y-[3px] border-transparent rounded-md pt-0 pb-1 mb-2">
+          <h2 class="card-title place-content-center divide-y-[1px] pt-2 tracking-wide ">{card.title}</h2>
+          <!-- Divider line -->
+          <div class=" w-full p-0 m-0 border-b-2 border-slate-100 border-opacity-20  "></div>
+          <!-- Sections for displaying contact information -->
+          <div class="info-section ">
+            <div class="contact-section_1 pb-1">
+              <h3 class="pt-1.5 -pb-0 px-2">{card.subtitle1}</h3>
+              <div class="ps-2 py-0.5">
+                <p class="p-0 pt-0.5 m-0">{card.phone}</p>
+                </div>
+            </div>
+            <div class="contact-section_2 ">
+              <h3 class="pt-1 -pb-1 px-2">{card.subtitle2}</h3>
+              <div class="ps-2 py-0.5">
+                <p class="p-0 m-0">{card.phone2}</p>
+                </div>
+            </div>
+            <div class="contact-section_3">
+              <h3 class="pt-1 -pb-2 px-2">{card.subtitle3}</h3>
+              <div class="ps-2 py-0.5">
+                <p class="p-0 m-0">{card.phone3}</p>
+                </div>
+            </div>
+          </div>
+        </div>
+      // </div>
+    ))
+  }
+</div>
+<!-- <div class="divider divide-x-2 divide-y-2 divider-accent" /> -->
+<style>
+  .card {
+    margin: 0 auto;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 1%;
+    margin-bottom: 10px;
+    
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+  }
+  .card-title {
+    font-weight: bold;
+    font-size: 30px;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: Oxygen;
+    margin-bottom: 0%;
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+  .divider {
+    margin-top: 0;
+    margin-bottom: 3%;
+  }
+  h3 {
+    font-weight: bold;
+    font-size: large;
+  }
+  p {
+    font-weight: 600;
+  }
+</style>

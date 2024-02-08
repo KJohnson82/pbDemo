@@ -1,0 +1,46 @@
+---
+import BottomNav from "./BottomNav.astro"; // Importing BottomNav component
+import SearchBar from "./SearchBar.astro"; // Importing SearchBar component
+
+// Define the type for the component's props
+type Props = {
+  bottomNav: {
+    icon: string; // Icon name for the nav item
+    label: string; // Label text for the nav item
+    to: string; // URL or path the nav item will link to
+  }[];
+};
+
+// Extract the bottomNav data from Astro's props
+const { bottomNav } = Astro.props;
+---
+
+<!-- Main container for the component -->
+<div class="box-content relative w-full">
+  <!-- Render the BottomNav component, passing bottomNav as prop -->
+  <BottomNav bottomNav={bottomNav} />
+  <!-- Include the SearchBar component -->
+  <!-- <SearchBar /> -->
+  <!-- Footer section -->
+  <footer class="footer footer-center w-full h-fit pb-1">
+    
+      <!-- Copyright notice -->
+      <p>Copyright © 2024 - All right reserved by Mega Mega Inc.</p>
+    
+  </footer>
+  <!-- Commented out alternative footer content -->
+</div>
+
+<style>
+  /* Styles for paragraph text, typically used in the footer */
+  p {
+    font-family: "Roboto", sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    line-height: 1.5;
+    color: bg-secondary;
+    text-align: center;
+    margin: 2%;
+    padding: 0;
+  }
+</style>
