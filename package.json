@@ -1,0 +1,30 @@
+{
+  "name": "d-software-development-pbstatic",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    
+    "build": "astro check && astro build && pagefind --site dist && xcopy /E /I dist\\pagefind public\\",
+
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.3.1",
+    "@astrojs/tailwind": "^5.1.0",
+    "@types/dompurify": "^3.0.5",
+    "astro": "^4.0.9",
+    "astro-icon": "^0.8.2",
+    "astro-pagefind": "^1.4.0",
+    "jsdom": "^23.2.0",
+    "typescript": "^5.3.3"
+  },
+  "devDependencies": {
+    "@tailwindcss/typography": "^0.5.10",
+    "daisyui": "^4.4.19",
+    "pagefind": "^1.0.4",
+    "tailwindcss": "^3.4.0"
+  }
+}
