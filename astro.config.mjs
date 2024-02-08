@@ -1,5 +1,5 @@
 import { defineConfig } from 'astro/config';
-import pagefind from "astro-pagefind";
+
 
 import tailwind from "@astrojs/tailwind";
 
@@ -9,8 +9,5 @@ export default defineConfig({
   prefetch: {
     prefetchAll: true,
   },
-  build: {
-    format: "file",
-  },
-  integrations: [tailwind(), pagefind()],
+  integrations: [tailwind()],
 });
