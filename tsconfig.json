@@ -1,6 +1,6 @@
 {
   "extends": "astro/tsconfigs/strict",
   "compilerOptions": {
-    "moduleResolution": "NodeNext",
+    "moduleResolution": "Node16",
   }
 }

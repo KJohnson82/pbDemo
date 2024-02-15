@@ -12,12 +12,12 @@ export default defineConfig({
     empdb: {
       pathMatcher: /^(\/corporate|\/plant)\/.+$/,
       language: 'english',
-      contentSelectors: ['h4', 'h3']
+      contentSelectors: ['h4', 'h3', 'span']
     },
     retaildb: {
       pathMatcher: /^(\/metalmart|\/servicecenter)\/.+$/,
       language: 'english',
-      contentSelectors: ['h4', 'h3', 'span',],
+      contentSelectors: ['h4', 'h3', 'span'],
     },
   }),],
 });
