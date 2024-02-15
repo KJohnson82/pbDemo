@@ -5,6 +5,7 @@ import Footer from "../components/Footer.astro"; // Importing Footer component (
 import SearchBar from "../components/SearchBar.astro"; // Importing SearchBar component (not used in HTML)
 import { ViewTransitions } from "astro:transitions"; // Importing ViewTransitions for page transition effects
 
+
 type Props = {
   title: string; // Prop for the page title
 };
@@ -40,7 +41,7 @@ const { title } = Astro.props;
     <!-- Page transition component -->
     <script>
 
-      import { getOramaDB, search } from "@orama/plugin-astro/client";
+      import { getOramaDB, search, } from "@orama/plugin-astro/client";
 
       const employeeDB = await getOramaDB('empdb');
       const storeDB = await getOramaDB('retaildb');

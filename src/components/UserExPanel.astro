@@ -4,6 +4,7 @@ import UserCard from "./UserCard.astro"; // Importing UserCard component for dis
 import Index from "../pages/index.astro";
 import { create, insert } from '@orama/orama';
 import Main from '../layouts/Main.astro';
+import { getOramaDB, search } from "@orama/plugin-astro/client"
 
 
 
@@ -29,19 +30,19 @@ type Props = {
 // Extract the employees data from props
 const { employees } = Astro.props;
 
-
+let userID;
 ---
 
 <!-- // Render the list of employees -->
 <ul class="rounded-sm ms-1">
-  {employees.map((employee) => ({
-    let userID = (`emp-${employee.id + "-" + employee.firstName + "-" + employee.lastName}`).replaceAll(" ", "-");
-    userID = await insert(employeeDB, {
-      userName: employee.firstName + " " + employee.lastName,
-      jobTitle: employee.jobTitle,
-      location: employee.location,
-      department: employee.department,
-    });
+  {employees.map((employee) => (
+    // userID = (`emp-${employee.id + "-" + employee.firstName + "-" + employee.lastName}`).replaceAll(" ", "-"),
+    // userID = await insert(employeeDB, {
+    //   userName: employee.firstName + " " + employee.lastName,
+    //   jobTitle: employee.jobTitle,
+    //   location: employee.location,
+    //   department: employee.department,
+    // }),
     <!-- List item for each employee -->
     <li class="rounded-lg hover:bg-primary hover:bg-opacity-5 hover:rounded-md hover:border-transparent hover:text-white transition ease-in duration-200 transform focus:scale-110 hover:-translate-y-0.5 hover:scale-105 active:translate-y-0 first:border-t-0 last:border-b-0">
       <div class="collapse mb-0.5 -px-4 p-0 focus-within:bg-primary focus-within:border-e-8 focus-within:rounded-md focus-within:text-white focus-within:-translate-y-0.5 focus-within:scale-105 focus-within:m-0.5 focus-within:me-1 ">
@@ -77,7 +78,7 @@ const { employees } = Astro.props;
         </div>
       </div>
     </li>
-  }))}
+  ))}
 </ul>
 
 <style>
