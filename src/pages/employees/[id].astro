@@ -1,0 +1,39 @@
+---
+// Import Astro's built-in functions and your JSON data
+import allEmployees from '../data/JSON/Data.json';
+
+// Get the `id` parameter from the URL
+const { id } = Astro.request.params;
+
+// Find the employee in your data whose ID matches the URL parameter
+const employee = allEmployees.find(emp => emp.id.toString() === id);
+
+// Redirect or show a 404 page if the employee doesn't exist
+if (!employee) {
+  return Astro.redirect('/404');
+}
+---
+
+<html>
+<head>
+  <title>{employee.firstName} {employee.lastName}</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Additional head elements here -->
+</head>
+<body>
+  <main>
+    <article>
+      <h1>{employee.firstName} {employee.lastName}</h1>
+      <p>Job Title: {employee.jobTitle}</p>
+      <p>Department: {employee.department}</p>
+      <p>Email: <a href={`mailto:${employee.email}`}>{employee.email}</a></p>
+      <p>Phone: {employee.phoneNumber}</p>
+      <!-- You can expand this section with more employee details as needed -->
+    </article>
+    <nav>
+      <a href="/">Back to Employee List</a>
+    </nav>
+  </main>
+</body>
+</html>
