@@ -7,7 +7,7 @@ export default {
 		},
 		fontFamily: {
 			sans: ['Oxygen', 'sans-serif'],
-			serif: ['DMSerifDisplay', 'AbrilFatface', 'serif'],
+			serif: ['DMSerifDisplay','serif'],
 		},
 	},
 	plugins: [require('@tailwindcss/typography'), require("daisyui")],
